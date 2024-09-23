@@ -1,0 +1,98 @@
+=====================================================
+
+import requests
+from bs4 import BeautifulSoup
+
+url = 'https://www.cbr.ru/currency_base/daily/'
+
+source = requests.get(url)
+main_text = source.text
+soup = BeautifulSoup(main_text)
+
+table = soup.find('div',{'class' : 'table-wrapper'})
+cur = table.findAll('td')
+
+AUD = cur[4]
+AUD = AUD.text
+AUD = 'Австралийский доллар\n' + (str(AUD))
+
+AZN = cur[9]
+AZN = AZN.text
+AZN = 'Азербайджанский манат\n' + (str(AZN))
+
+AMD = cur[14]
+AMD = AMD.text
+AMD = 'Армянские драмы\n' + (str(AMD))
+
+BYN = cur[19]
+BYN = BYN.text
+BYN = 'Белорусский рубль\n' + (str(BYN))
+
+a = str(input())
+
+if a == 'BYN' or a == 'byn':
+    print(BYN)
+elif a == 'Белорусский рубль':
+    print(BYN)
+elif a == 'AMD' or a == 'amd':
+    print(AMD)
+elif a == 'Армянские драмы':
+    print(AMD)
+elif a == 'AZN' or a == 'azn':
+    print(AZN)
+elif a == 'Азербайджанский манат':
+    print(AZN)
+elif a == 'AUD' or a == 'aud':
+    print(AUD)
+elif a == 'Австралийский доллар':
+    print(AUD)
+else:
+    print('Введите корректное наименование валюты')
+
+=================================================
+
+import requests
+from bs4 import BeautifulSoup
+
+url = 'https://www.cbr.ru/currency_base/daily/'
+
+source = requests.get(url)
+main_text = source.text
+soup = BeautifulSoup(main_text)
+
+table = soup.find('div',{'class' : 'table-wrapper'})
+
+print(table.text)
+
+=================================================
+
+import requests
+from bs4 import BeautifulSoup as bs
+
+url = 'https://www.cbr.ru/currency_base/daily/'
+
+r = requests.get(url)
+soup = bs(r.text, 'html.parser')
+v = soup.find('div',{'class' : 'table-wrapper'})
+t = v.findAll ('td')
+
+t = [t[i] for i in range(4, len(t), 5)]
+print(t)
+
+=================================================
+
+import requests
+from bs4 import BeautifulSoup as bs
+
+url = 'https://www.cbr.ru/currency_base/daily/'
+
+r = requests.get(url)
+soup = bs(r.text, 'html.parser')
+v = soup.find('div',{'class' : 'table-wrapper'})
+t = v.findAll ('td')
+print(t[1:5])
+print(t[6:10])
+print(t[11:15])
+print(t[16:20])
+
+=================================================
